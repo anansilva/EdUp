@@ -1,4 +1,4 @@
-# Hey, this is EdUp
+# Welcome to EdUp
 
 Edup is a company that distributes learning content from multiple publishers.
 

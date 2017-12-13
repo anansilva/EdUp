@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+# before_action :authenticate_publisher!, only: [:new, :create]
 
   def index
     @courses = Course.all

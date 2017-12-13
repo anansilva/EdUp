@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :publishers, path: 'publishers', controllers: { sessions: "publishers/sessions" }
-  devise_for :students, path: 'students', controllers: { sessions: "students/sessions" }
+  devise_for :publishers, path: 'publishers'
+  devise_for :students, path: 'students'
   root to: 'courses#index'
 
   resources :courses, only: [ :new, :create]

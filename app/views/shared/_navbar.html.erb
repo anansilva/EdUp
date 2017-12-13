@@ -1,0 +1,29 @@
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "studying.png", height: 50 %>
+  <% end %>
+
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <% if publisher_signed_in?%>
+
+      <!-- Links when logged in -->
+      <%= link_to destroy_publisher_session_path, method: :delete do %>
+        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+      <% end %>
+
+      <% elsif student_signed_in? %>
+        <%= link_to destroy_student_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %>
+      <% else %>
+
+      <!-- Login link (when logged out) -->
+
+      <%= link_to t(".sign_in", default: "Login"), new_publisher_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+
+  </div>
+</div>

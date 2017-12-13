@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-# before_action :authenticate_publisher!, only: [:new, :create]
+before_action :authenticate_publisher!, only: [:new, :create]
 
   def index
     @courses = Course.all
@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.publisher = current_publisher
     if @course.save
-      redirect_to root_path
+      redirect_to courses_path
     else
       render :new
     end

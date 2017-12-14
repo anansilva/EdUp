@@ -1,4 +1,4 @@
 class Course < ApplicationRecord
   has_many :students, through: :course_students
-  belongs_to :publisher
+  has_one :publisher
 end

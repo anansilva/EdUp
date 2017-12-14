@@ -3,7 +3,7 @@
   <div class='course-body'>
     <h3><%= course.name %></h3>
     <p><%= course.description %></p>
-    <p><%= course.video %></p>
+    <p><%= video_tag course.video, :size => "320x240", :controls => true   %></p>
   </div>
 <% end %>
 

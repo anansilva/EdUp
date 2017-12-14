@@ -1,7 +1,11 @@
+<% if !current_publisher.nil? %>
 <h1>Courses</h1>
 <% @courses.each do |course| %>
   <div class='course-body'>
     <h3><%= course.name %></h3>
     <p><%= course.description %></p>
   </div>
+<% end %>
+<% else %>
+<p>You are a student</p>
 <% end %>

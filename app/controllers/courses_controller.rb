@@ -9,6 +9,7 @@ before_action :authenticate_publisher!, only: [:new, :create]
     end
   end
 
+
   def new
     @course = Course.new
   end
@@ -26,6 +27,6 @@ before_action :authenticate_publisher!, only: [:new, :create]
   private
 
   def course_params
-    params.require(:course).permit(:name, :description, :video)
+    params.require(:course).permit(:name, :description, :video, :video_link)
   end
 end

@@ -5,3 +5,7 @@
     <p><%= course.description %></p>
   </div>
 <% end %>
+
+<% if !current_publisher.nil? %>
+<%= link_to 'Add new course', new_course_path %>
+<% end %>

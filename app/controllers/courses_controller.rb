@@ -26,6 +26,6 @@ before_action :authenticate_publisher!, only: [:new, :create]
   private
 
   def course_params
-    params.require(:course).permit(:name, :description)
+    params.require(:course).permit(:name, :description, :video)
   end
 end

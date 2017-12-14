@@ -19,6 +19,9 @@ gem 'webpacker'
 # authentication
 gem 'devise'
 
+# videos
+gem 'carrierwave', '~> 1.0'
+
 # seeds
 gem 'faker'
 

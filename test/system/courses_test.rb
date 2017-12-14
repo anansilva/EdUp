@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class CoursesTest < ApplicationSystemTestCase
   test "visiting the index" do
-    visit "/"
+    visit "courses/index"
     # save_and_open_screenshot
     assert_selector "h1", text: "Courses"
     assert_selector ".course-body", count: Course.count

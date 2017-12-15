@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+
 protected
   def authenticate_inviter!
-    authenticate_patient!(:force => true)
+    authenticate_student!(:force => true)
   end
 
   def after_sign_in_path_for(publisher)

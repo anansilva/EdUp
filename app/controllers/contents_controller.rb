@@ -19,7 +19,30 @@ class ContentsController < ApplicationController
     end
   end
 
+  def invite_student
+    if Student.find_by(email: invite_params[:email]) == nil
+      @student = Student.invite!({email: invite_params[:email]}, current_publisher) do |p|
+        # p.skip_invitation = true
+        # p.accept_invitation!
+      end
+    else
+      @student = Student.find_by(email: invite_params[:email])
+    end
+
+    @course_student = CourseStudent.new
+    @course_student.course_id = Course.find(params[:course_id]).id
+    @course_student.student_id = @student.id
+    @course_student.save
+
+    redirect_to dashboard_path
+    flash[:notice] = "User invited!"
+  end
+
   private
+
+  def invite_params
+    params.require(:student).permit(:email)
+  end
 
   def content_params
     params.require(:content).permit(:name, :description, :video, :video_link)

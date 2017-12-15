@@ -19,7 +19,7 @@ puts 'Creating courses...'
   Course.create!(
     name: Faker::Lorem.word,
     description: Faker::Lorem.sentence(3),
-    publisher_id: rand(1..10),
+    publisher_id: rand(1..5),
   )
 end
 

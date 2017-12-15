@@ -10,19 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215105213) do
+ActiveRecord::Schema.define(version: 20171215141453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "video"
+    t.string "video_link"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_contents_on_course_id"
+  end
 
   create_table "course_students", force: :cascade do |t|
     t.bigint "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "publisher_id"
     t.index ["course_id"], name: "index_course_students_on_course_id"
-    t.index ["publisher_id"], name: "index_course_students_on_publisher_id"
     t.index ["student_id"], name: "index_course_students_on_student_id"
   end
 
@@ -83,8 +92,8 @@ ActiveRecord::Schema.define(version: 20171215105213) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contents", "courses"
   add_foreign_key "course_students", "courses"
-  add_foreign_key "course_students", "publishers"
   add_foreign_key "course_students", "students"
   add_foreign_key "courses", "publishers"
 end

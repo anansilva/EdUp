@@ -12,13 +12,14 @@ before_action :authenticate_publisher!, only: [:new, :create]
 
   def new
     @course = Course.new
+    @publisher = current_publisher
   end
 
   def create
     @course = Course.new(course_params)
-    @course.publisher = current_publisher
+    @course.publisher= current_publisher
     if @course.save
-      redirect_to courses_path
+      redirect_to publisher_courses_path
     else
       render :new
     end

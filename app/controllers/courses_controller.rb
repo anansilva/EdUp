@@ -9,7 +9,6 @@ before_action :authenticate_publisher!, only: [:new, :create]
     end
   end
 
-
   def new
     @course = Course.new
     @publisher = current_publisher
@@ -17,9 +16,9 @@ before_action :authenticate_publisher!, only: [:new, :create]
 
   def create
     @course = Course.new(course_params)
-    @course.publisher= current_publisher
+    @course.publisher_id = current_publisher.id
     if @course.save
-      redirect_to publisher_courses_path
+      redirect_to publisher_courses_path(current_publisher)
     else
       render :new
     end
@@ -28,6 +27,6 @@ before_action :authenticate_publisher!, only: [:new, :create]
   private
 
   def course_params
-    params.require(:course).permit(:name, :description, :video, :video_link)
+    params.require(:course).permit(:name, :description)
   end
 end

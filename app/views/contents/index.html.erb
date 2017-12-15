@@ -1,0 +1,20 @@
+<div class="container text-center">
+  <h1>Videos</h1>
+  <% @contents.each do |content| %>
+    <div class='course-body'>
+      <h3>Name: <%= content.name%></h3>
+      <p>Description: <%= content.description %></p>
+      <% if content.video_link.nil? %>
+        <p><%= video_tag content.video, :size => "320x240", :controls => true   %></p>
+      <% else %>
+      <p><iframe width="320" height="240" src="<%= content.video_link %>" frameborder="0" gesture="media"  allow="encrypted-media" allowfullscreen></iframe></p>
+  <!-- if there's no video -->
+    <% end %>
+
+    </div>
+  <% end %>
+
+  <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
+  <%= link_to 'Invite a student', new_student_invitation_path, class: "btn btn-primary" %>
+
+</div>

@@ -1,16 +1,13 @@
-<h1>Your Courses</h1>
-<% @courses.each do |course| %>
-  <div class='course-body'>
-    <h3><%= course.name %></h3>
-    <p><%= course.description %></p>
-    <% if course.video_link.nil? %>
-    <p><%= video_tag course.video, :size => "320x240", :controls => true   %></p>
-    <% else %>
-    <p><iframe width="320" height="240" src="<%= course.video_link %>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></p>
-    <% end %>
-  </div>
-<% end %>
+<div class="container text-center">
+  <h1>Your Courses</h1>
+  <% @courses.each do |course| %>
+    <div class='course-body'>
+      <h3>Course: <%= link_to course.name, publisher_course_contents_path(course_id: course.id) %></h3>
+      <p>Description: <%= course.description %></p>
+    </div>
+  <% end %>
 
-<% if !current_publisher.nil? %>
-<%= link_to 'Add new course', new_publisher_course_path %>
-<% end %>
+  <% if !current_publisher.nil? %>
+  <%= link_to 'Add new course', new_publisher_course_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

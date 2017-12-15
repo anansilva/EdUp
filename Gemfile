@@ -16,8 +16,9 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
-# authentication
-gem 'devise'
+# authentication and invitation
+gem 'devise', '~> 4.2'
+gem 'devise_invitable', '~> 1.7.0'
 
 # videos
 gem 'carrierwave', '~> 1.0'

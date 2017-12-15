@@ -1,0 +1,11 @@
+<div id="invite" class="modal fade">
+  <h2><%= t "devise.invitations.new.header" %></h2>
+
+  <div>
+  <%= simple_form_for(student.new, url: invite_path) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.text_field :email %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</div>

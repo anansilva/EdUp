@@ -1,7 +1,8 @@
 <div class="container text-center">
+  <div class="course-content">
   <h1>Videos</h1>
   <% @contents.each do |content| %>
-    <div class='course-body'>
+    <div class='course-content-body'>
       <h3>Name: <%= content.name%></h3>
       <p>Description: <%= content.description %></p>
       <% if content.video_link.nil? %>
@@ -16,5 +17,12 @@
 
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
-
+  </div>
+  <div class="course-students">
+  <% @students.each do |student| %>
+  <div class="course-students-body">
+    <p> <%= student.email %></p>
+    <% end %>
+  </div>
+  </div>
 </div>

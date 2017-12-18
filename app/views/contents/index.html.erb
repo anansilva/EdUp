@@ -19,13 +19,11 @@
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
   </div>
   <div class="course-students">
-  <% if !current_publisher.nil?  %>
-  <% @students.each do |student| %>
-  <%= student.email %>
+  <% # if !current_publisher.nil?  %>
   <div class="course-students-body">
     <p></p>
-  <% end %>
+  <% # end %>
   </div>
-  <% end %>
+  <% # end %>
   </div>
 </div>

@@ -1,20 +1,22 @@
 class ContentsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
-    @contents = @course.contents
-
+    @contents = Content.all
   end
 
   def new
-    @content = Content.new
-    @publisher = Publisher.find(params[:publisher_id])
+    @publisher = current_publisher
     @course = Course.find(params[:course_id])
+    @content = Content.new
   end
 
   def create
     @content = Content.new(content_params)
-    @content.course_id = Course.find(params[:course_id]).id
-     if @content.save
+    @content.save
+    @course_content = CourseContent.new
+    @course_content.course_id = Course.find(params[:course_id]).id
+    @course_content.content_id = @content.id
+     if @course_content.save
       redirect_to publisher_course_contents_path(params[:course_id], params[:publisher_id])
     else
       render :new

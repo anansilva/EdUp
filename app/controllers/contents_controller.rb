@@ -1,6 +1,8 @@
 class ContentsController < ApplicationController
   def index
-    @contents = Content.all.where(course_id: params[:course_id])
+    @course = Course.find(params[:course_id])
+    @contents = @course.contents
+
   end
 
   def new

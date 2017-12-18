@@ -19,11 +19,18 @@ class ContentsController < ApplicationController
     end
   end
 
-  def invite_student
+  def invite_student_new
+    @student = Student.new
+    @publisher = Publisher.find(params[:publisher_id])
+    @course = Course.find(params[:course_id])
+  end
+
+  def invite_student_create
+    @student = Student.new(invite_params)
     if Student.find_by(email: invite_params[:email]) == nil
       @student = Student.invite!({email: invite_params[:email]}, current_publisher) do |p|
-        # p.skip_invitation = true
-        # p.accept_invitation!
+        p.skip_invitation = true
+        p.accept_invitation!
       end
     else
       @student = Student.find_by(email: invite_params[:email])
@@ -34,7 +41,7 @@ class ContentsController < ApplicationController
     @course_student.student_id = @student.id
     @course_student.save
 
-    redirect_to dashboard_path
+    redirect_to publisher_course_contents_path
     flash[:notice] = "User invited!"
   end
 

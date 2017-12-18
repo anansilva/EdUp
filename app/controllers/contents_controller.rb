@@ -1,7 +1,8 @@
 class ContentsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
-    @contents = Content.all
+    @contents = @course.contents
+    @students = @course.students
   end
 
   def new

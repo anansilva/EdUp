@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :publishers do
-    resources :courses, only: [ :index, :new, :create] do
-      resources :contents, only: [:index, :new, :create]
+    resources :courses, param: :slug, only: [:new, :create, :index] do
+      resources :contents, only: [:new, :create]
     end
   end
 
-  get '/publishers/:publisher_id/courses/:course_id/contents/invite_student', to: 'contents#invite_student_new', as: :invite
-  post '/publishers/:publisher_id/courses/:course_id/contents/invite_student', to: 'contents#invite_student_create'
-
+  get '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_new', as: :invite
+  post '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_create'
+  get '/publishers/:publisher_id/courses/:course_slug', to:'contents#index', as: :course_content
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

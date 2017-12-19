@@ -1,6 +1,9 @@
 <div class="container text-center">
   <div class="course-content">
   <h1>Videos</h1>
+  <% if @course.contents.empty? %>
+  <p>You have no content</p>
+  <% else %>
   <% @contents.each do |content| %>
     <div class='course-content-body'>
       <h3>Name: <%= content.name%></h3>
@@ -13,6 +16,7 @@
     <% end %>
 
     </div>
+  <% end %>
   <% end %>
 
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>

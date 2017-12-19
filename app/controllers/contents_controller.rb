@@ -1,24 +1,27 @@
 class ContentsController < ApplicationController
+  before_action :set_course, only: [:index, :new, :create]
+
   def index
-    @course = Course.find(params[:course_id])
+    set_course
     @contents = @course.contents
     @students = @course.students
   end
 
   def new
     @publisher = current_publisher
-    @course = Course.find(params[:course_id])
+    set_course
     @content = Content.new
   end
 
   def create
+    set_course
     @content = Content.new(content_params)
     @content.save
     @course_content = CourseContent.new
-    @course_content.course_id = Course.find(params[:course_id]).id
+    @course_content.course = @course
     @course_content.content_id = @content.id
      if @course_content.save
-      redirect_to publisher_course_contents_path(params[:course_id], params[:publisher_id])
+      redirect_to course_content_path(params[:publisher_id], params[:course_slug])
     else
       render :new
     end
@@ -27,7 +30,7 @@ class ContentsController < ApplicationController
   def invite_student_new
     @student = Student.new
     @publisher = Publisher.find(params[:publisher_id])
-    @course = Course.find(params[:course_id])
+    course
   end
 
   def invite_student_create
@@ -42,7 +45,7 @@ class ContentsController < ApplicationController
     end
 
     @course_student = CourseStudent.new
-    @course_student.course_id = Course.find(params[:course_id]).id
+    @course_student.course_slug = Course.find_by slug: params[:slug]
     @course_student.student_id = @student.id
     @course_student.save
 
@@ -51,6 +54,10 @@ class ContentsController < ApplicationController
   end
 
   private
+
+  def set_course
+    @course = Course.find_by(slug: params[:course_slug])
+  end
 
   def invite_params
     params.require(:student).permit(:email)

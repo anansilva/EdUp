@@ -2,7 +2,7 @@
   <h1>Your Courses</h1>
   <% @courses.each do |course| %>
     <div class='course-body'>
-      <h3>Course: <%= link_to course.name, publisher_course_contents_path(course_id: course.id) %></h3>
+      <h3>Course: <%= link_to course.name, course_content_path(course_slug: course.slug) %></h3>
       <p>Description: <%= course.description %></p>
     </div>
   <% end %>

@@ -5,8 +5,12 @@ protected
     authenticate_student!(:force => true)
   end
 
-  def after_sign_in_path_for(publisher)
-    request.env['omniauth.origin'] || stored_location_for(resource) || publisher_courses_path(current_publisher)
+  def after_sign_in_path
+    # check for the class of the object to determine what type it is
+    if !current_publisher.nil?
+        publisher_courses_path(current_publisher)
+    elsif !current_student.nil?
+        student_courses_path(current_student)
+    end
   end
-
 end

@@ -1,3 +1,18 @@
 <h1>Welcome to EdUp</h1>
+
+<!-- Publisher homepage view-->
+<% if publisher_signed_in? == true && student_signed_in? == false %>
+<p><%= link_to 'Your courses', publisher_courses_path(current_publisher) %></p>
+
+<!-- Student homepage view -->
+<% elsif publisher_signed_in? == false && student_signed_in? == true %>
+<p><%= link_to 'Your courses', student_courses_path(current_student) %></p>
+
+<!-- Public hompeage view -->
+<% elsif publisher_signed_in? == false && student_signed_in? == false %>
 <p><%= link_to 'Publisher', publisher_session_path %></p>
 <p><%= link_to 'Student', student_session_path %></p>
+<% end %>
+
+
+

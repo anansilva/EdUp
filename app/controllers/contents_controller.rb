@@ -1,5 +1,5 @@
 class ContentsController < ApplicationController
-  before_action :set_course, only: [:index, :new, :create]
+  before_action :set_course
 
   def index
     set_course
@@ -30,26 +30,27 @@ class ContentsController < ApplicationController
   def invite_student_new
     @student = Student.new
     @publisher = Publisher.find(params[:publisher_id])
-    course
+    set_course
   end
 
   def invite_student_create
+    set_course
     @student = Student.new(invite_params)
     if Student.find_by(email: invite_params[:email]) == nil
       @student = Student.invite!({email: invite_params[:email]}, current_publisher) do |p|
-        p.skip_invitation = true
-        p.accept_invitation!
+        # p.skip_invitation = true
+        # p.accept_invitation!
       end
     else
       @student = Student.find_by(email: invite_params[:email])
     end
 
     @course_student = CourseStudent.new
-    @course_student.course_slug = Course.find_by slug: params[:slug]
+    @course_student.course = @course
     @course_student.student_id = @student.id
     @course_student.save
 
-    redirect_to publisher_course_contents_path
+    redirect_to course_content_path(params[:publisher_id], params[:course_slug])
     flash[:notice] = "User invited!"
   end
 

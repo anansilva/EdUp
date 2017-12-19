@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
+ resources :students do
+    resources :courses, param: :slug, only: [:index] do
+      resources :contents, only: [:new, :create, :index]
+    end
+  end
+
   get '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_new', as: :invite
   post '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_create'
   get '/publishers/:publisher_id/courses/:course_slug', to:'contents#index', as: :course_content

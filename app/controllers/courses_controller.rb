@@ -1,9 +1,14 @@
 class CoursesController < ApplicationController
-before_action :authenticate_publisher!, only: [:index, :new, :create]
+before_action :authenticate_publisher!, only: [:new, :create]
 
   def index
+    if !current_publisher.nil?
       @publisher = Publisher.find(params[:publisher_id])
       @courses = @publisher.courses
+    elsif !current_student.nil?
+      @student = current_student
+      @courses = @student.courses
+    end
   end
 
   def new

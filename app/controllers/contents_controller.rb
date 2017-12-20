@@ -49,10 +49,14 @@ class ContentsController < ApplicationController
     @course_student = CourseStudent.new
     @course_student.course = @course
     @course_student.student_id = @student.id
-    @course_student.save
-
-    redirect_to course_content_path(params[:publisher_id], params[:course_slug])
-    flash[:notice] = "User invited!"
+    if CourseStudent.where(student_id: @student.id).count > 1
+      redirect_to invite_path(params[:publisher_id], params[:course_slug])
+      flash[:alert] = "This user has already been invited!"
+    else
+      @course_student.save
+      redirect_to course_content_path(params[:publisher_id], params[:course_slug])
+      flash[:notice] = "User invited!"
+    end
   end
 
   private

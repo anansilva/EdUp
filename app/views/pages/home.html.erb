@@ -1,18 +1,35 @@
-<h1>Welcome to EdUp</h1>
+<div class="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 60%), url('/assets/banner_hp.jpg');">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <h1 class="text-center banner-text">Welcome to Edup</h1>
+    </div>
+  </div>
 
-<!-- Publisher homepage view-->
+
+  <!-- Publisher homepage view-->
+<div class="home-banner-links text-center">
 <% if publisher_signed_in? == true && student_signed_in? == false %>
-<p><%= link_to 'Your courses', publisher_courses_path(current_publisher) %></p>
+<p><%= link_to 'Your courses', publisher_courses_path(current_publisher), class: "btn btn-primary"  %></p>
 
 <!-- Student homepage view -->
 <% elsif publisher_signed_in? == false && student_signed_in? == true %>
-<p><%= link_to 'Your courses', student_courses_path(current_student) %></p>
+<p><%= link_to 'Your courses', student_courses_path(current_student), class: "btn btn-primary" %></p>
 
 <!-- Public hompeage view -->
 <% elsif publisher_signed_in? == false && student_signed_in? == false %>
-<p><%= link_to 'Publisher', publisher_session_path %></p>
-<p><%= link_to 'Student', student_session_path %></p>
+<p><%= link_to 'Publisher', publisher_session_path, class: "btn btn-primary" %></p>
+<p><%= link_to 'Student', student_session_path, class: "btn btn-primary" %></p>
+
 <% end %>
+</div>
+
+
+</div>
+
+
+
+
+
 
 
 

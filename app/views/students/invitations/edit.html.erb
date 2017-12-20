@@ -1,3 +1,5 @@
+<div class="container">
+<div class="container-form" style="width: 70%; margin: 0 auto; margin-top: 80px;">
 <h2><%= t 'devise.invitations.edit.header' %></h2>
 
 <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
@@ -7,5 +9,7 @@
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
 
-  <%= f.button :submit, t("devise.invitations.edit.submit_button") %>
+  <%= f.button :submit, t("devise.invitations.edit.submit_button"), class: "btn btn-primary" %>
 <% end %>
+</div>
+</div>

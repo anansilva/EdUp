@@ -1,16 +1,18 @@
 class Publishers::SessionsController < Devise::SessionsController
   include Accessible
-  skip_before_action :check_publisher, only: :destroy
+  skip_before_action :check_user, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  #   def new
+  #     super
+  #   end
 
   # POST /resource/sign_in
   # def create
-  #   super
+  #   if params[:redirect_to].present?
+  #     store_location_for(resource, params[:redirect_to])
+  #   end
   # end
 
   # DELETE /resource/sign_out

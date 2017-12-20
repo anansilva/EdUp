@@ -2,7 +2,7 @@
   <div class="course-content">
   <h1>Videos</h1>
   <% if @course.contents.empty? %>
-  <p>You have no content</p>
+  <p>This course does not have any content yet!</p>
   <% else %>
   <% @contents.each do |content| %>
     <div class='course-content-body'>
@@ -19,6 +19,7 @@
   <% end %>
   <% end %>
 
+  <% if !current_publisher.nil?  %>
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
   </div>
@@ -29,4 +30,5 @@
     <% end %>
   </div>
   </div>
+  <% end %>
 </div>

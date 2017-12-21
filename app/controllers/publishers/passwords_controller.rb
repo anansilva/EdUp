@@ -1,4 +1,6 @@
 class Publishers::PasswordsController < Devise::PasswordsController
+include Accessible
+  before_action :check_user
   # GET /resource/password/new
   # def new
   #   super

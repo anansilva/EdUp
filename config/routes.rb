@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
  resources :students do
     resources :courses, param: :slug, only: [:index] do
-      resources :contents, only: [:new, :create, :index]
+      resources :contents, only: [:index]
     end
   end
 

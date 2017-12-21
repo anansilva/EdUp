@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center" style="margin-top: 80px">
   <h1>Your Courses</h1>
 
   <% if @courses.empty? %>
@@ -14,6 +14,7 @@
       <h3>Course: <%= link_to course.name, course_content_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
       <% elsif !current_student.nil? %>
       <h3>Course: <%= link_to course.name, student_course_contents_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
+      <p>Publisher: <%= Publisher.find(course.publisher_id).email %></p>
       <% end %>
       <p>Description: <%= course.description %></p>
     </div>

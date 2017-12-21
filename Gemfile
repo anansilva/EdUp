@@ -22,6 +22,7 @@ gem 'devise_invitable', '~> 1.7.0'
 
 # videos
 gem 'carrierwave', '~> 1.0'
+gem 'conred'
 
 # seeds
 gem 'faker'

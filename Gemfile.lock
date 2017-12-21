@@ -70,6 +70,7 @@ GEM
       nokogiri (~> 1.6)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    conred (0.5.0)
     crass (1.0.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -231,6 +232,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   carrierwave (~> 1.0)
   chromedriver-helper
+  conred
   devise (~> 4.2)
   devise_invitable (~> 1.7.0)
   faker

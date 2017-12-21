@@ -32,16 +32,15 @@
 
 
   <div class="course-content-students">
-    <% @students.each do |student| %>
+    <% @course.students.each do |student| %>
       <div class="course-students-body">
       <p> <%= student.email %></p>
-      <% student.course_students.each do |s| %>
-      <p><strong>Accessed?</strong> <%= s.accessed %></p>
-      <% end %>
+      <p>Accessed? <%=  student.course_students.first.accessed  %></p>
+    <% end %>
       </div>
-    <% end %>
   </div>
-    <% end %>
+  <%= link_to 'Back to courses', publisher_courses_path, class: "btn btn-primary" %>
+  <% end %>
 </div>
 
 

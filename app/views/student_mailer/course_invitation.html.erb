@@ -1,0 +1,6 @@
+<h1>Hi <%= @student.email %></h1>
+
+<p>
+  You have a new course invitation:
+  <%= link_to 'course', student_course_contents_url(student_id: @student.id, course_slug: @course.slug) %>
+</p>

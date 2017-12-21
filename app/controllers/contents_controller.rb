@@ -1,5 +1,13 @@
 class ContentsController < ApplicationController
   before_action :set_course
+  before_action do
+    if current_publisher != nil
+      authenticate_publisher!
+    else
+      authenticate_student!
+    end
+  end
+
 
   def index
     @course = Course.find_by(slug: params[:course_slug])
@@ -58,11 +66,13 @@ class ContentsController < ApplicationController
     @course_student = CourseStudent.new
     @course_student.course = @course
     @course_student.student_id = @student.id
-    if CourseStudent.where(student_id: @student.id).count > 1
+
+    if CourseStudent.where(course_id: @course.id, student_id: @student.id).count >= 1
       redirect_to invite_path(params[:publisher_id], params[:course_slug])
       flash[:alert] = "This user has already been invited!"
     else
       @course_student.save
+      StudentMailer.course_invitation(@student, @course).deliver_now
       redirect_to course_content_path(params[:publisher_id], params[:course_slug])
       flash[:notice] = "User invited!"
     end

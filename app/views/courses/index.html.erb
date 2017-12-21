@@ -1,6 +1,12 @@
 <div class="container text-center">
   <h1>Your Courses</h1>
 
+  <% if @courses.empty? %>
+
+    <p>This course does not have any content yet!</p>
+
+  <% else %>
+
   <% @courses.each do |course| %>
 
     <div class='course-body'>
@@ -12,7 +18,10 @@
       <p>Description: <%= course.description %></p>
     </div>
   <% end %>
+<% end %>
 
+  <% if !current_publisher.nil?  %>
+  <%= link_to 'Add a new course', new_publisher_course_path, class: "btn btn-primary" %>
   <% end %>
 
 </div>

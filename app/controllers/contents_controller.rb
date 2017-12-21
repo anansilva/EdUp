@@ -2,10 +2,19 @@ class ContentsController < ApplicationController
   before_action :set_course
 
   def index
-    current_course = Course.find_by(slug: params[:course_slug])
-    @contents = current_course.contents
-    @publishers = current_course.students
-    @students = current_course.students
+    @course = Course.find_by(slug: params[:course_slug])
+    @contents = @course.contents
+    @publisher = Publisher.find(@course.publisher_id)
+    @students = @course.students
+    @course_students = CourseStudent.all
+
+    if !current_student.nil?
+      current_student
+      @course_student = CourseStudent.where(course_id: @course.id, student_id: current_student.id)
+      if @course_student.first.accessed == false
+        @course_student.first.update(accessed: true)
+      end
+    end
   end
 
   def new
@@ -58,6 +67,7 @@ class ContentsController < ApplicationController
       flash[:notice] = "User invited!"
     end
   end
+
 
   private
 

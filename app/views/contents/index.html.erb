@@ -1,42 +1,45 @@
 <div class="container text-center">
+
   <div class="course-content">
   <h1>Videos</h1>
+
   <% if @course.contents.empty? %>
-  <p>This course does not have any content yet!</p>
+
+    <p>This course does not have any content yet!</p>
+
   <% else %>
-  <% @contents.each do |content| %>
+
+    <% @contents.each do |content| %>
+
     <div class='course-content-body'>
       <h3>Name: <%= content.name%></h3>
       <p>Description: <%= content.description %></p>
       <% if content.video_link.nil? %>
         <p><%= video_tag content.video, :size => "320x240", :controls => true   %></p>
       <% else %>
-      <p><iframe width="320" height="240" src="<%= content.video_link %>" frameborder="0" gesture="media"  allow="encrypted-media" allowfullscreen></iframe></p>
-  <!-- if there's no video -->
+        <p><iframe width="320" height="240" src="<%= content.video_link %>" frameborder="0" gesture="media"  allow="encrypted-media" allowfullscreen></iframe></p>
+      <% end %>
     <% end %>
-  </div>
 
     </div>
+
   <% end %>
-  <% end %>
+  </div>
 
   <% if !current_publisher.nil?  %>
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
-
-  </div>
-
-    <div class="course-content-students">
-      <% @students.each do |student| %>
-        <div class="course-students-body">
-        <p> <%= student.email %></p>
-      <% end %>
-        </div>
-    </div>
-    <% end %>
-
-  </div>
-  </div>
   <% end %>
 
+  <div class="course-content-students">
+    <% @students.each do |student| %>
+      <div class="course-students-body">
+      <p> <%= student.email %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+
+
+

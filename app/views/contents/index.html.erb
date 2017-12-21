@@ -29,15 +29,19 @@
   <% if !current_publisher.nil?  %>
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
-  <% end %>
+
 
   <div class="course-content-students">
     <% @students.each do |student| %>
       <div class="course-students-body">
       <p> <%= student.email %></p>
+      <% student.course_students.each do |s| %>
+      <p><strong>Accessed?</strong> <%= s.accessed %></p>
+      <% end %>
       </div>
     <% end %>
   </div>
+    <% end %>
 </div>
 
 

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171219120632) do
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status", default: false
+    t.boolean "accessed", default: false
     t.index ["course_id"], name: "index_course_students_on_course_id"
     t.index ["student_id"], name: "index_course_students_on_student_id"
   end

@@ -1,7 +1,7 @@
-<div class="container text-center">
+<div class="container text-center" style="margin-top: 80px">
 
   <div class="course-content">
-  <h1>Videos</h1>
+  <h1><%= @course.name %></h1>
 
   <% if @course.contents.empty? %>
 
@@ -17,7 +17,13 @@
       <% if content.video_link.nil? %>
         <p><%= video_tag content.video, :size => "320x240", :controls => true   %></p>
       <% else %>
-        <p><iframe width="320" height="240" src="<%= content.video_link %>" frameborder="0" gesture="media"  allow="encrypted-media" allowfullscreen></iframe></p>
+      <% c = Conred::Video.new(
+      video_url: content.video_link,
+      width: 285,
+      height: 185,
+      error_message: "Video url is invalid"
+      ) %>
+        <p><%= c.code.html_safe %></p>
       <% end %>
     <% end %>
 
@@ -40,6 +46,8 @@
       </div>
   </div>
   <%= link_to 'Back to courses', publisher_courses_path, class: "btn btn-primary" %>
+  <% else %>
+  <%= link_to 'Back to courses', student_courses_path, class: "btn btn-primary" %>
   <% end %>
 </div>
 

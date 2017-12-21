@@ -1,20 +1,17 @@
 <div class="container text-center">
   <h1>Your Courses</h1>
+
   <% @courses.each do |course| %>
-  <div class='course-body'>
 
-    <!-- Publisher's courses -->
-    <% if !current_publisher.nil?%>
-      <h3>Course: <%= link_to course.name, course_content_path(course_slug: course.slug) %></h3>
-      <%= link_to 'Add new course', new_publisher_course_path, class: "btn btn-primary" %>
-
-      <!-- Students's courses -->
-    <% elsif !current_student.nil? %>
-      <h3>Course: <%= link_to course.name, student_course_contents_path(course_slug: course.slug) %></h3>
-    <% end %>
-    <p>Description: <%= course.description %></p>
-
-  </div>
+    <div class='course-body'>
+      <% if !current_publisher.nil? %>
+      <h3>Course: <%= link_to course.name, course_content_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
+      <% elsif !current_student.nil? %>
+      <h3>Course: <%= link_to course.name, student_course_contents_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
+      <% end %>
+      <p>Description: <%= course.description %></p>
+    </div>
+  <% end %>
 
   <% end %>
 

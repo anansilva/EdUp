@@ -20,5 +20,13 @@ Rails.application.routes.draw do
   get '/publishers/:publisher_id/courses/:course_slug', to:'contents#index', as: :course_content
   get '/courses/:course_slug/contents/public', to: 'contents#public', as: :public_course
 
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :courses, only: [ :index ]
+    end
+  end
+
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

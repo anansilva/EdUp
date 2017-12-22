@@ -6,4 +6,6 @@ class Publisher < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :courses
   has_many :invitations, :class_name => 'Student', :as => :invited_by
+
+  acts_as_token_authenticatable
 end

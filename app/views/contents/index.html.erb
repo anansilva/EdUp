@@ -35,7 +35,7 @@
   <% if !current_publisher.nil?  %>
   <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
   <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
-
+  <%= link_to 'Change to public', public_course_path, class: "btn btn-primary" %>
 
   <div class="course-content-students">
     <% @course.students.each do |student| %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221152226) do
+ActiveRecord::Schema.define(version: 20171222114639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171221152226) do
     t.bigint "publisher_id"
     t.string "video_link"
     t.string "slug", null: false
+    t.boolean "public_status", default: false
     t.index ["publisher_id"], name: "index_courses_on_publisher_id"
     t.index ["slug"], name: "index_courses_on_slug", unique: true
   end

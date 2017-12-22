@@ -1,13 +1,12 @@
 class ContentsController < ApplicationController
   before_action :set_course
-  before_action do
+  before_action :except => [:public]  do
     if current_publisher != nil
       authenticate_publisher!
     else
       authenticate_student!
     end
   end
-
 
   def index
     @course = Course.find_by(slug: params[:course_slug])
@@ -78,6 +77,16 @@ class ContentsController < ApplicationController
     end
   end
 
+  def public
+    set_course
+    @contents = @course.contents
+    if @course.public_status == false
+       @course.update(public_status: true)
+       flash[:notice] = "This course in now public!"
+    else
+      flash[:notice] = "This course is already public!"
+    end
+  end
 
   private
 

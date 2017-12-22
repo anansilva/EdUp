@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_new', as: :invite
   post '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_create'
   get '/publishers/:publisher_id/courses/:course_slug', to:'contents#index', as: :course_content
+  get '/courses/:course_slug/contents/public', to: 'contents#public', as: :public_course
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,5 +1,11 @@
 class CoursesController < ApplicationController
-before_action :authenticate_publisher!, only: [:new, :create]
+  before_action do
+    if current_publisher != nil
+      authenticate_publisher!
+    else
+      authenticate_student!
+    end
+  end
 
   def index
     if !current_publisher.nil?

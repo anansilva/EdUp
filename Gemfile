@@ -19,6 +19,7 @@ gem 'webpacker'
 # authentication and invitation
 gem 'devise', '~> 4.2'
 gem 'devise_invitable', '~> 1.7.0'
+gem "simple_token_authentication"
 
 # videos
 gem 'carrierwave', '~> 1.0'

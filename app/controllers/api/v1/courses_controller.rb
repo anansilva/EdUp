@@ -1,5 +1,4 @@
-class Api::V1::CoursesController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for Publisher, fallback_to_devise: false
+class Api::V1::CoursesController < ApplicationController
 
   def index
     @courses = Course.all

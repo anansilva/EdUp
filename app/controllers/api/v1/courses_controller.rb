@@ -8,7 +8,7 @@ class Api::V1::CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.publisher_id = current_publisher.id
     if @course.save
-      redirect_to publisher_courses_path(current_publisher)
+      redirect_to api_v1_courses_path
     else
       render :new
     end

@@ -15,8 +15,22 @@
   width: 70%;
 }
 
-.course-link {
-  margin-top: 50px;
+.course-link{
+  padding: 30px;
 }
 
+.course-content-students {
+  padding: 30px;
+}
 
+.course-content-body {
+  padding-top: 10px;
+  margin: 0 auto;
+  float: none;
+  width: 70%;
+  p {
+    margin: 0 auto;
+    padding: 20px;
+    text-align: justify;
+  }
+}

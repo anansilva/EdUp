@@ -1,6 +1,4 @@
-<div class="container text-center" style="margin-top: 80px">
-
-  <div class="course-content">
+<div class="container text-center">
   <h1><%= @course.name %></h1>
 
   <% if @course.contents.empty? %>
@@ -10,32 +8,28 @@
   <% else %>
 
     <% @contents.each do |content| %>
+      <div class='course-content-body'>
 
-    <div class='course-content-body'>
-      <h3>Name: <%= content.name%></h3>
-      <p>Description: <%= content.description %></p>
-      <% if content.video_link.nil? %>
-        <p><%= video_tag content.video, :size => "320x240", :controls => true  %></p>
-      <% else %>
-      <% c = Conred::Video.new(
-      video_url: content.video_link,
-      width: 285,
-      height: 185,
-      error_message: "Video url is invalid"
-      ) %>
-        <p><%= c.code.html_safe %></p>
-      <% end %>
+        <h3><%= content.name%></h3>
+        <p><%= content.description %></p>
+        <% if content.video_link != ""  %>
+        <% c = Conred::Video.new(
+            video_url: content.video_link,
+            width: 320,
+            height: 240,
+            error_message: "Video url is invalid"
+          ) %>
+          <%= c.code.html_safe %>
+        <% else %>
+          <%= video_tag content.video, :size => "320x240", :controls => true  %>
+        <% end %>
+      </div>
     <% end %>
-
-    </div>
-
   <% end %>
-  </div>
 
   <% if !current_publisher.nil?  %>
-  <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
-  <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
-  <%= link_to 'Change to public', public_course_path, class: "btn btn-primary" %>
+      <%= link_to 'Add a new video', new_publisher_course_content_path, class: "btn btn-primary" %>
+      <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
 
   <div class="course-content-students">
     <% @course.students.each do |student| %>
@@ -45,10 +39,13 @@
     <% end %>
       </div>
   </div>
-  <%= link_to 'Back to courses', publisher_courses_path, class: "btn btn-primary" %>
-  <% else %>
-  <%= link_to 'Back to courses', student_courses_path, class: "btn btn-primary" %>
-  <% end %>
+    <%= link_to 'Change to public', public_course_path, class: "btn btn-primary" %>
+    <%= link_to 'Back to courses', publisher_courses_path, class: "btn btn-primary" %>
+    <% else %>
+    <%= link_to 'Back to courses', student_courses_path, class: "btn btn-primary" %>
+    <% end %>
+
+
 </div>
 
 

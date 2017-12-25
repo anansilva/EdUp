@@ -1,17 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :null_session
-
-  acts_as_token_authentication_handler_for Publisher
-
-   before_action do
-    if current_publisher != nil
-      authenticate_publisher!
-    else
-      authenticate_student!
-    end
-  end
-
 protected
   def authenticate_inviter!
     authenticate_student!(:force => true)

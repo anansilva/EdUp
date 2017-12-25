@@ -1,5 +1,16 @@
 class Api::V1::ContentsController < ApplicationController
 
+  acts_as_token_authentication_handler_for Publisher
+
+  before_action do
+    if current_publisher != nil
+      authenticate_publisher!
+    else
+      authenticate_student!
+    end
+  end
+
+
   def create
     @course = Course.find(params[:course_id])
     @content = Content.new(content_params)

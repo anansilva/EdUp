@@ -1,7 +1,9 @@
-<div class="container text-center">
+<div class="container text-center index">
   <h1>Your Courses</h1>
 
+
   <% @courses.each do |course| %>
+  <div class="row">
     <div class='course-body'>
       <% if !current_publisher.nil? %>
       <h3>Course: <%= link_to course.name, course_content_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
@@ -9,10 +11,13 @@
       <h3>Course: <%= link_to course.name, student_course_contents_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
       <% end %>
       <p>Description: <%= course.description %></p>
+  </div>
     </div>
   <% end %>
 
+  <div class="course-link text-center">
   <% if !current_publisher.nil? %>
   <%= link_to 'Add new course', new_publisher_course_path, class: "btn btn-primary" %>
   <% end %>
+  </div>
 </div>

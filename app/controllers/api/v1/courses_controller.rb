@@ -1,5 +1,4 @@
-class Api::V1::CoursesController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for Publisher, fallback_to_devise: false
+class Api::V1::CoursesController < ApplicationController
 
   def index
     @courses = Course.all
@@ -9,7 +8,7 @@ class Api::V1::CoursesController < Api::V1::BaseController
     @course = Course.new(course_params)
     @course.publisher_id = current_publisher.id
     if @course.save
-      redirect_to publisher_courses_path(current_publisher)
+      redirect_to api_v1_courses_path
     else
       render :new
     end

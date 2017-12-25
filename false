@@ -1,0 +1,5 @@
+yarn check v1.3.2
+success Folder in sync.
+Done in 0.16s.
+      invoke  active_record
+      create    db/migrate/20171222113342_add_public_session_to_courses.rb

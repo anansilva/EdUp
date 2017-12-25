@@ -15,7 +15,7 @@
       <h3>Name: <%= content.name%></h3>
       <p>Description: <%= content.description %></p>
       <% if content.video_link.nil? %>
-        <p><%= video_tag content.video, :size => "320x240", :controls => true   %></p>
+        <p><%= video_tag content.video, :size => "320x240", :controls => true  %></p>
       <% else %>
       <% c = Conred::Video.new(
       video_url: content.video_link,

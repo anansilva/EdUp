@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+<div class="container text-center index">
+  <h1>Your Courses</h1>
+
+
+  <% @courses.each do |course| %>
+  <div class="row">
+=======
 <div class="container text-center" style="margin-top: 80px">
   <h1>Your Courses</h1>
 
@@ -9,6 +17,7 @@
 
   <% @courses.each do |course| %>
 
+>>>>>>> 69dbc8cc5306f77653479cd71fa91282b01956d7
     <div class='course-body'>
       <% if !current_publisher.nil? %>
       <h3>Course: <%= link_to course.name, course_content_path(publisher_id: course.publisher_id,course_slug: course.slug) %></h3>
@@ -17,12 +26,21 @@
       <p>Publisher: <%= Publisher.find(course.publisher_id).name %></p>
       <% end %>
       <p>Description: <%= course.description %></p>
+  </div>
     </div>
   <% end %>
 <% end %>
 
+<<<<<<< HEAD
+  <div class="course-link text-center">
+  <% if !current_publisher.nil? %>
+  <%= link_to 'Add new course', new_publisher_course_path, class: "btn btn-primary" %>
+  <% end %>
+  </div>
+=======
   <% if !current_publisher.nil?  %>
   <%= link_to 'Add a new course', new_publisher_course_path, class: "btn btn-primary" %>
   <% end %>
 
+>>>>>>> 69dbc8cc5306f77653479cd71fa91282b01956d7
 </div>

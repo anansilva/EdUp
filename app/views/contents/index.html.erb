@@ -32,15 +32,31 @@
       <%= link_to 'Invite a student', invite_path, class: "btn btn-primary" %>
 
   <div class="course-content-students">
+    <h2>Students</h2>
+
+    <% if @course.students.empty? %>
+    <p>This course does not have students yet!</p>
+    <% else %>
+
     <% @course.students.each do |student| %>
-      <div class="course-students-body">
-      <p> <%= student.email %></p>
-      <p>Accessed? <%=  student.course_students.first.accessed  %></p>
+      <div class="course-students text-center">
+      <p> <%= student.email %> <%  if student.course_students.first.accessed == true %>
+        <i class="fa fa-check-circle" aria-hidden="true" style="color: rgb(0, 180, 183)"></i>
+          <% else %>
+          <i class="fa fa-check-circle-o" aria-hidden="true" style="color: #EE5F5B"></i>
+      </p>
     <% end %>
+    <% end %>
+      </div>
+      <div class="course-students-caption">
+        <p>Invited and accessed - <i class="fa fa-check-circle" aria-hidden="true" style="color: rgb(0, 180, 183)"></i> </p>
+        <p>Invited not accessed - <i class="fa fa-check-circle-o" aria-hidden="true" style="color: #EE5F5B"></i> </p>
       </div>
   </div>
     <%= link_to 'Change to public', public_course_path, class: "btn btn-primary" %>
     <%= link_to 'Back to courses', publisher_courses_path, class: "btn btn-primary" %>
+    <% end %>
+
     <% else %>
     <%= link_to 'Back to courses', student_courses_path, class: "btn btn-primary" %>
     <% end %>

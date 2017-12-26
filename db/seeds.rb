@@ -89,11 +89,30 @@ puts 'Creating students...'
     )
   end
 
-5.times do
   CourseStudent.create!(
-    course_id: rand(1..3),
-    student_id: rand(1..5)
+    course_id: 1,
+    student_id: 1
   )
-end
+
+  CourseStudent.create!(
+    course_id: 1,
+    student_id: 2
+  )
+
+  CourseStudent.create!(
+    course_id: 2,
+    student_id: 3
+  )
+
+  CourseStudent.create!(
+    course_id: 3,
+    student_id: 4
+  )
+
+  CourseStudent.create!(
+    course_id: 3,
+    student_id: 5
+  )
+
 
 puts 'Finished!'

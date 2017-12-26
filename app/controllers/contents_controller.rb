@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_course
-  before_action :except => [:public]  do
+  before_action except: [:show_public] do
     if current_publisher != nil
       authenticate_publisher!
     else
@@ -55,8 +55,8 @@ class ContentsController < ApplicationController
     @student = Student.new(invite_params)
     if Student.find_by(email: invite_params[:email]) == nil
       @student = Student.invite!({email: invite_params[:email]}, current_publisher) do |p|
-        # p.skip_invitation = true
-        # p.accept_invitation!
+         p.skip_invitation = true
+         p.accept_invitation!
       end
     else
       @student = Student.find_by(email: invite_params[:email])
@@ -77,7 +77,7 @@ class ContentsController < ApplicationController
     end
   end
 
-  def public
+  def set_public
     set_course
     @contents = @course.contents
     if @course.public_status == false
@@ -87,6 +87,14 @@ class ContentsController < ApplicationController
       flash[:notice] = "This course is already public!"
     end
   end
+
+  def show_public
+    set_course
+    if @course.public_status == true
+      @contens = @course.contents
+    end
+  end
+
 
   private
 

@@ -55,8 +55,8 @@ class ContentsController < ApplicationController
     @student = Student.new(invite_params)
     if Student.find_by(email: invite_params[:email]) == nil
       @student = Student.invite!({email: invite_params[:email]}, current_publisher) do |p|
-        # p.skip_invitation = true
-        # p.accept_invitation!
+         p.skip_invitation = true
+         p.accept_invitation!
       end
     else
       @student = Student.find_by(email: invite_params[:email])

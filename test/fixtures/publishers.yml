@@ -1,2 +1,3 @@
 school:
-  email: "new@school.com"
+  email: "courses@lewagon.com"
+  encrypted_password: "secret"

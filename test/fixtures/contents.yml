@@ -5,11 +5,10 @@ one:
   description: MyString
   video: MyString
   video_link: MyString
-  course: one
 
 two:
   name: MyString
   description: MyString
   video: MyString
   video_link: MyString
-  course: two
+

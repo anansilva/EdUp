@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_course
-  before_action :except => [:public]  do
+  before_action except: [:show_public] do
     if current_publisher != nil
       authenticate_publisher!
     else
@@ -77,7 +77,7 @@ class ContentsController < ApplicationController
     end
   end
 
-  def public
+  def set_public
     set_course
     @contents = @course.contents
     if @course.public_status == false
@@ -87,6 +87,14 @@ class ContentsController < ApplicationController
       flash[:notice] = "This course is already public!"
     end
   end
+
+  def show_public
+    set_course
+    if @course.public_status == true
+      @contens = @course.contents
+    end
+  end
+
 
   private
 

@@ -82,12 +82,17 @@ puts 'Creating content...'
 
 puts 'Creating students...'
 
-  5.times do
+  4.times do
     Student.create!(
       email: Faker::Internet.email,
       password: 'secret'
     )
   end
+
+   Student.create!(
+      email: 'ana@me.com',
+      password: 'secret'
+    )
 
   CourseStudent.create!(
     course_id: 1,
@@ -96,22 +101,22 @@ puts 'Creating students...'
 
   CourseStudent.create!(
     course_id: 1,
-    student_id: 2
+    student_id: 5
   )
 
   CourseStudent.create!(
     course_id: 2,
+    student_id: 2
+  )
+
+  CourseStudent.create!(
+    course_id: 3,
     student_id: 3
   )
 
   CourseStudent.create!(
     course_id: 3,
     student_id: 4
-  )
-
-  CourseStudent.create!(
-    course_id: 3,
-    student_id: 5
   )
 
 

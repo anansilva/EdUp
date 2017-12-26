@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   get '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_new', as: :invite
   post '/publishers/:publisher_id/courses/:course_slug/contents/invite_student', to: 'contents#invite_student_create'
   get '/publishers/:publisher_id/courses/:course_slug', to:'contents#index', as: :course_content
+  get '/courses/:course_slug/contents/public/set', to: 'contents#set_public', as: :set_public_course
   get '/courses/:course_slug/contents/public', to: 'contents#show_public', as: :public_course
-  get '/courses/:course_slug/contents/public', to: 'contents#set_public', as: :set_public_course
 
 
   namespace :api, defaults: { format: :json } do

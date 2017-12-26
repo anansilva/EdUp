@@ -79,7 +79,6 @@ class ContentsController < ApplicationController
 
   def set_public
     set_course
-    @contents = @course.contents
     if @course.public_status == false
        @course.update(public_status: true)
        flash[:notice] = "This course in now public!"

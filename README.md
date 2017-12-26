@@ -56,7 +56,7 @@ Each user will be able to see all the courses in the link.
    Student
    ```
    email: ana@me.com
-   password: 1234567
+   password: secret
    ```
 
 
